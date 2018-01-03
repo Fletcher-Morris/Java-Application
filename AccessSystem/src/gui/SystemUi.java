@@ -28,38 +28,69 @@ public class SystemUi extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jSplitPane1 = new javax.swing.JSplitPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jSplitPane2 = new javax.swing.JSplitPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        RoomsTab = new javax.swing.JSplitPane();
+        RoomsScrollPane = new javax.swing.JScrollPane();
+        RoomsTable = new javax.swing.JTable();
+        RoomsButtonsScrollPane = new javax.swing.JScrollPane();
+        RoomsButtonsPanel = new javax.swing.JPanel();
+        CreateUserBtn2 = new javax.swing.JButton();
+        UsersTab = new javax.swing.JSplitPane();
+        UsersScrollPane = new javax.swing.JScrollPane();
+        UsersTable = new javax.swing.JTable();
+        UsersButtonsScrollPane = new javax.swing.JScrollPane();
+        UsersButtonsPanel = new javax.swing.JPanel();
+        CreateUserFirstNameTextField = new javax.swing.JTextField();
+        CreateUserLastNameTextField = new javax.swing.JTextField();
+        CreateUserTypeComboBox = new javax.swing.JComboBox<>();
+        CreateUserBtn = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
+        ModifyUserIdTextField = new javax.swing.JTextField();
+        ModifyUserFirstNameTextField = new javax.swing.JTextField();
+        ModifyUserLastNameTextField = new javax.swing.JTextField();
+        ModifyUserTypeComboBox = new javax.swing.JComboBox<>();
+        ModifyUserBtn = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
+        RemoveUserIdTextField = new javax.swing.JTextField();
+        ModifyUserBtn1 = new javax.swing.JButton();
+        LogsTab = new javax.swing.JSplitPane();
+        LogsScrollPane = new javax.swing.JScrollPane();
+        LogTextArea = new javax.swing.JTextArea();
+        LogsButtonsScrollPane = new javax.swing.JScrollPane();
+        LogsButtonsPanel = new javax.swing.JPanel();
+        CreateUserFirstNameTextField1 = new javax.swing.JTextField();
+        CreateUserLastNameTextField1 = new javax.swing.JTextField();
+        CreateUserTypeComboBox1 = new javax.swing.JComboBox<>();
+        CreateUserBtn1 = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JSeparator();
+        ModifyUserIdTextField1 = new javax.swing.JTextField();
+        ModifyUserFirstNameTextField1 = new javax.swing.JTextField();
+        ModifyUserLastNameTextField1 = new javax.swing.JTextField();
+        ModifyUserTypeComboBox1 = new javax.swing.JComboBox<>();
+        ModifyUserBtn2 = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JSeparator();
+        RemoveUserIdTextField1 = new javax.swing.JTextField();
+        ModifyUserBtn3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        MenuBAr = new javax.swing.JMenuBar();
         FileBtn = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         ExitBtn = new javax.swing.JMenuItem();
-        EditBtn = new javax.swing.JMenu();
-        AddUserBtn = new javax.swing.JMenuItem();
-        ModifyUserBtn = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        AddRoomBtn = new javax.swing.JMenuItem();
-        ModifyRoomBtn = new javax.swing.JMenuItem();
         ViewBtn = new javax.swing.JMenu();
+        ViewCurrentLogBtn = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setSize(new java.awt.Dimension(800, 600));
 
-        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        jSplitPane1.setResizeWeight(1.0);
+        RoomsTab.setResizeWeight(1.0);
 
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        RoomsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        RoomsScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        RoomsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -71,39 +102,62 @@ public class SystemUi extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable2);
+        RoomsScrollPane.setViewportView(RoomsTable);
 
-        jSplitPane1.setTopComponent(jScrollPane1);
+        RoomsTab.setTopComponent(RoomsScrollPane);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 622, Short.MAX_VALUE)
+        RoomsButtonsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        RoomsButtonsScrollPane.setHorizontalScrollBar(null);
+        RoomsButtonsScrollPane.setMinimumSize(new java.awt.Dimension(170, 6));
+
+        RoomsButtonsPanel.setMinimumSize(new java.awt.Dimension(120, 6));
+
+        CreateUserBtn2.setText("Create User");
+        CreateUserBtn2.setMinimumSize(new java.awt.Dimension(120, 6));
+        CreateUserBtn2.setPreferredSize(new java.awt.Dimension(100, 25));
+        CreateUserBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateUserBtn2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout RoomsButtonsPanelLayout = new javax.swing.GroupLayout(RoomsButtonsPanel);
+        RoomsButtonsPanel.setLayout(RoomsButtonsPanelLayout);
+        RoomsButtonsPanelLayout.setHorizontalGroup(
+            RoomsButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RoomsButtonsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CreateUserBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        RoomsButtonsPanelLayout.setVerticalGroup(
+            RoomsButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RoomsButtonsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CreateUserBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(511, Short.MAX_VALUE))
         );
 
-        jSplitPane1.setRightComponent(jPanel2);
+        RoomsButtonsScrollPane.setViewportView(RoomsButtonsPanel);
 
-        jTabbedPane1.addTab("Rooms", jSplitPane1);
+        RoomsTab.setRightComponent(RoomsButtonsScrollPane);
 
-        jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        jSplitPane2.setResizeWeight(1.0);
+        jTabbedPane1.addTab("Rooms", RoomsTab);
 
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        UsersTab.setResizeWeight(1.0);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        UsersScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        UsersScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        UsersScrollPane.setMinimumSize(new java.awt.Dimension(200, 6));
+
+        UsersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -122,34 +176,267 @@ public class SystemUi extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setToolTipText("");
-        jTable1.setAutoscrolls(false);
-        jScrollPane2.setViewportView(jTable1);
+        UsersTable.setToolTipText("");
+        UsersTable.setAutoscrolls(false);
+        UsersScrollPane.setViewportView(UsersTable);
 
-        jSplitPane2.setTopComponent(jScrollPane2);
+        UsersTab.setTopComponent(UsersScrollPane);
 
-        jButton1.setText("New User");
+        UsersButtonsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        UsersButtonsScrollPane.setHorizontalScrollBar(null);
+        UsersButtonsScrollPane.setMinimumSize(new java.awt.Dimension(170, 6));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        UsersButtonsPanel.setMinimumSize(new java.awt.Dimension(120, 6));
+
+        CreateUserFirstNameTextField.setText("First Name");
+        CreateUserFirstNameTextField.setMinimumSize(new java.awt.Dimension(120, 6));
+        CreateUserFirstNameTextField.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        CreateUserLastNameTextField.setText("Last Name");
+        CreateUserLastNameTextField.setMinimumSize(new java.awt.Dimension(120, 6));
+        CreateUserLastNameTextField.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        CreateUserTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CreateUserTypeComboBox.setMinimumSize(new java.awt.Dimension(120, 6));
+        CreateUserTypeComboBox.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        CreateUserBtn.setText("Create User");
+        CreateUserBtn.setMinimumSize(new java.awt.Dimension(120, 6));
+        CreateUserBtn.setPreferredSize(new java.awt.Dimension(100, 25));
+        CreateUserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateUserBtnActionPerformed(evt);
+            }
+        });
+
+        jSeparator3.setMinimumSize(new java.awt.Dimension(120, 6));
+        jSeparator3.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        ModifyUserIdTextField.setText("User ID");
+        ModifyUserIdTextField.setMinimumSize(new java.awt.Dimension(120, 6));
+        ModifyUserIdTextField.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        ModifyUserFirstNameTextField.setText("New First Name");
+        ModifyUserFirstNameTextField.setMinimumSize(new java.awt.Dimension(120, 6));
+        ModifyUserFirstNameTextField.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        ModifyUserLastNameTextField.setText("New Last Name");
+        ModifyUserLastNameTextField.setMinimumSize(new java.awt.Dimension(120, 6));
+        ModifyUserLastNameTextField.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        ModifyUserTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ModifyUserTypeComboBox.setMinimumSize(new java.awt.Dimension(120, 6));
+        ModifyUserTypeComboBox.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        ModifyUserBtn.setText("Modify User");
+        ModifyUserBtn.setMinimumSize(new java.awt.Dimension(120, 6));
+        ModifyUserBtn.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        jSeparator4.setMinimumSize(new java.awt.Dimension(120, 6));
+        jSeparator4.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        RemoveUserIdTextField.setText("User ID");
+        RemoveUserIdTextField.setMinimumSize(new java.awt.Dimension(120, 6));
+        RemoveUserIdTextField.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        ModifyUserBtn1.setText("Remove User");
+        ModifyUserBtn1.setMinimumSize(new java.awt.Dimension(120, 6));
+        ModifyUserBtn1.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        javax.swing.GroupLayout UsersButtonsPanelLayout = new javax.swing.GroupLayout(UsersButtonsPanel);
+        UsersButtonsPanel.setLayout(UsersButtonsPanelLayout);
+        UsersButtonsPanelLayout.setHorizontalGroup(
+            UsersButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UsersButtonsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(533, Short.MAX_VALUE))
+                .addGroup(UsersButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CreateUserTypeComboBox, 0, 148, Short.MAX_VALUE)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CreateUserLastNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CreateUserFirstNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CreateUserBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModifyUserIdTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModifyUserFirstNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModifyUserLastNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModifyUserTypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModifyUserBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RemoveUserIdTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModifyUserBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        UsersButtonsPanelLayout.setVerticalGroup(
+            UsersButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UsersButtonsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(CreateUserFirstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CreateUserLastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CreateUserTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CreateUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ModifyUserIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ModifyUserFirstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ModifyUserLastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ModifyUserTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ModifyUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RemoveUserIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ModifyUserBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jSplitPane2.setRightComponent(jPanel1);
+        UsersButtonsScrollPane.setViewportView(UsersButtonsPanel);
 
-        jTabbedPane1.addTab("Users", jSplitPane2);
+        UsersTab.setRightComponent(UsersButtonsScrollPane);
+
+        jTabbedPane1.addTab("Users", UsersTab);
+
+        LogsTab.setResizeWeight(1.0);
+
+        LogsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        LogsScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        LogTextArea.setColumns(20);
+        LogTextArea.setRows(5);
+        LogsScrollPane.setViewportView(LogTextArea);
+
+        LogsTab.setTopComponent(LogsScrollPane);
+
+        LogsButtonsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        LogsButtonsScrollPane.setHorizontalScrollBar(null);
+        LogsButtonsScrollPane.setMinimumSize(new java.awt.Dimension(170, 6));
+
+        LogsButtonsPanel.setMinimumSize(new java.awt.Dimension(120, 6));
+
+        CreateUserFirstNameTextField1.setText("First Name");
+        CreateUserFirstNameTextField1.setMinimumSize(new java.awt.Dimension(120, 6));
+        CreateUserFirstNameTextField1.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        CreateUserLastNameTextField1.setText("Last Name");
+        CreateUserLastNameTextField1.setMinimumSize(new java.awt.Dimension(120, 6));
+        CreateUserLastNameTextField1.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        CreateUserTypeComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CreateUserTypeComboBox1.setMinimumSize(new java.awt.Dimension(120, 6));
+        CreateUserTypeComboBox1.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        CreateUserBtn1.setText("Create User");
+        CreateUserBtn1.setMinimumSize(new java.awt.Dimension(120, 6));
+        CreateUserBtn1.setPreferredSize(new java.awt.Dimension(100, 25));
+        CreateUserBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateUserBtn1ActionPerformed(evt);
+            }
+        });
+
+        jSeparator5.setMinimumSize(new java.awt.Dimension(120, 6));
+        jSeparator5.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        ModifyUserIdTextField1.setText("User ID");
+        ModifyUserIdTextField1.setMinimumSize(new java.awt.Dimension(120, 6));
+        ModifyUserIdTextField1.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        ModifyUserFirstNameTextField1.setText("New First Name");
+        ModifyUserFirstNameTextField1.setMinimumSize(new java.awt.Dimension(120, 6));
+        ModifyUserFirstNameTextField1.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        ModifyUserLastNameTextField1.setText("New Last Name");
+        ModifyUserLastNameTextField1.setMinimumSize(new java.awt.Dimension(120, 6));
+        ModifyUserLastNameTextField1.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        ModifyUserTypeComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ModifyUserTypeComboBox1.setMinimumSize(new java.awt.Dimension(120, 6));
+        ModifyUserTypeComboBox1.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        ModifyUserBtn2.setText("Modify User");
+        ModifyUserBtn2.setMinimumSize(new java.awt.Dimension(120, 6));
+        ModifyUserBtn2.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        jSeparator6.setMinimumSize(new java.awt.Dimension(120, 6));
+        jSeparator6.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        RemoveUserIdTextField1.setText("User ID");
+        RemoveUserIdTextField1.setMinimumSize(new java.awt.Dimension(120, 6));
+        RemoveUserIdTextField1.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        ModifyUserBtn3.setText("Remove User");
+        ModifyUserBtn3.setMinimumSize(new java.awt.Dimension(120, 6));
+        ModifyUserBtn3.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        javax.swing.GroupLayout LogsButtonsPanelLayout = new javax.swing.GroupLayout(LogsButtonsPanel);
+        LogsButtonsPanel.setLayout(LogsButtonsPanelLayout);
+        LogsButtonsPanelLayout.setHorizontalGroup(
+            LogsButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LogsButtonsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(LogsButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CreateUserTypeComboBox1, 0, 148, Short.MAX_VALUE)
+                    .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CreateUserLastNameTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CreateUserFirstNameTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CreateUserBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModifyUserIdTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModifyUserFirstNameTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModifyUserLastNameTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModifyUserTypeComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModifyUserBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RemoveUserIdTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ModifyUserBtn3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        LogsButtonsPanelLayout.setVerticalGroup(
+            LogsButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LogsButtonsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CreateUserFirstNameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CreateUserLastNameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CreateUserTypeComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CreateUserBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ModifyUserIdTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ModifyUserFirstNameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ModifyUserLastNameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ModifyUserTypeComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ModifyUserBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RemoveUserIdTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ModifyUserBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        LogsButtonsScrollPane.setViewportView(LogsButtonsPanel);
+
+        LogsTab.setRightComponent(LogsButtonsScrollPane);
+
+        jTabbedPane1.addTab("Logs", LogsTab);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("University Access System");
 
         FileBtn.setText("File");
         FileBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -178,60 +465,46 @@ public class SystemUi extends javax.swing.JFrame {
         });
         FileBtn.add(ExitBtn);
 
-        jMenuBar1.add(FileBtn);
-
-        EditBtn.setText("Edit");
-        EditBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        EditBtn.setName("FileBtn"); // NOI18N
-
-        AddUserBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        AddUserBtn.setText("Add User");
-        AddUserBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddUserBtnActionPerformed(evt);
-            }
-        });
-        EditBtn.add(AddUserBtn);
-
-        ModifyUserBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
-        ModifyUserBtn.setText("Modify User");
-        EditBtn.add(ModifyUserBtn);
-        EditBtn.add(jSeparator2);
-
-        AddRoomBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        AddRoomBtn.setText("Add Room");
-        EditBtn.add(AddRoomBtn);
-
-        ModifyRoomBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        ModifyRoomBtn.setText("Modify Room");
-        EditBtn.add(ModifyRoomBtn);
-
-        jMenuBar1.add(EditBtn);
+        MenuBAr.add(FileBtn);
 
         ViewBtn.setText("View");
-        jMenuBar1.add(ViewBtn);
 
-        setJMenuBar(jMenuBar1);
+        ViewCurrentLogBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        ViewCurrentLogBtn.setText("Current Log");
+        ViewCurrentLogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewCurrentLogBtnActionPerformed(evt);
+            }
+        });
+        ViewBtn.add(ViewCurrentLogBtn);
+
+        MenuBAr.add(ViewBtn);
+
+        setJMenuBar(MenuBAr);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Users");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void AddUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddUserBtnActionPerformed
 
     private void FileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FileBtnActionPerformed
         // TODO add your handling code here:
@@ -242,6 +515,22 @@ public class SystemUi extends javax.swing.JFrame {
         
         System.exit(0);
     }//GEN-LAST:event_ExitBtnActionPerformed
+
+    private void ViewCurrentLogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewCurrentLogBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ViewCurrentLogBtnActionPerformed
+
+    private void CreateUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUserBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CreateUserBtnActionPerformed
+
+    private void CreateUserBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUserBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CreateUserBtn1ActionPerformed
+
+    private void CreateUserBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUserBtn2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CreateUserBtn2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,28 +568,57 @@ public class SystemUi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem AddRoomBtn;
-    private javax.swing.JMenuItem AddUserBtn;
-    private javax.swing.JMenu EditBtn;
+    private javax.swing.JButton CreateUserBtn;
+    private javax.swing.JButton CreateUserBtn1;
+    private javax.swing.JButton CreateUserBtn2;
+    private javax.swing.JTextField CreateUserFirstNameTextField;
+    private javax.swing.JTextField CreateUserFirstNameTextField1;
+    private javax.swing.JTextField CreateUserLastNameTextField;
+    private javax.swing.JTextField CreateUserLastNameTextField1;
+    private javax.swing.JComboBox<String> CreateUserTypeComboBox;
+    private javax.swing.JComboBox<String> CreateUserTypeComboBox1;
     private javax.swing.JMenuItem ExitBtn;
     private javax.swing.JMenu FileBtn;
-    private javax.swing.JMenuItem ModifyRoomBtn;
-    private javax.swing.JMenuItem ModifyUserBtn;
+    private javax.swing.JTextArea LogTextArea;
+    private javax.swing.JPanel LogsButtonsPanel;
+    private javax.swing.JScrollPane LogsButtonsScrollPane;
+    private javax.swing.JScrollPane LogsScrollPane;
+    private javax.swing.JSplitPane LogsTab;
+    private javax.swing.JMenuBar MenuBAr;
+    private javax.swing.JButton ModifyUserBtn;
+    private javax.swing.JButton ModifyUserBtn1;
+    private javax.swing.JButton ModifyUserBtn2;
+    private javax.swing.JButton ModifyUserBtn3;
+    private javax.swing.JTextField ModifyUserFirstNameTextField;
+    private javax.swing.JTextField ModifyUserFirstNameTextField1;
+    private javax.swing.JTextField ModifyUserIdTextField;
+    private javax.swing.JTextField ModifyUserIdTextField1;
+    private javax.swing.JTextField ModifyUserLastNameTextField;
+    private javax.swing.JTextField ModifyUserLastNameTextField1;
+    private javax.swing.JComboBox<String> ModifyUserTypeComboBox;
+    private javax.swing.JComboBox<String> ModifyUserTypeComboBox1;
+    private javax.swing.JTextField RemoveUserIdTextField;
+    private javax.swing.JTextField RemoveUserIdTextField1;
+    private javax.swing.JPanel RoomsButtonsPanel;
+    private javax.swing.JScrollPane RoomsButtonsScrollPane;
+    private javax.swing.JScrollPane RoomsScrollPane;
+    private javax.swing.JSplitPane RoomsTab;
+    private javax.swing.JTable RoomsTable;
+    private javax.swing.JPanel UsersButtonsPanel;
+    private javax.swing.JScrollPane UsersButtonsScrollPane;
+    private javax.swing.JScrollPane UsersScrollPane;
+    private javax.swing.JSplitPane UsersTab;
+    private javax.swing.JTable UsersTable;
     private javax.swing.JMenu ViewBtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem ViewCurrentLogBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

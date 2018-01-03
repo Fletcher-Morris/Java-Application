@@ -5,6 +5,8 @@
  */
 package accesssystem;
 
+import gui.SystemUi;
+
 /**
  *
  * @author odmoa
@@ -16,6 +18,8 @@ public class AccessSystem {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        SystemUi.main(args);
     }
     
 }
