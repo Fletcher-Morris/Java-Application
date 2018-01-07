@@ -21,5 +21,4 @@ public class AccessSystem {
         
         SystemUi.main(args);
     }
-    
 }

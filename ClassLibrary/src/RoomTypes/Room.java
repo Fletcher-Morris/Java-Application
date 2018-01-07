@@ -1,30 +1,30 @@
-public class Room {
+package RoomTypes;
 
-	private String code;
-	private EmergencyMode emergencyMode = EmergencyMode.Normal;
+import Util.EmergencyMode;
 
-	public String getCode() {
-		return this.code;
-	}
+public abstract class Room {
 
-	/**
-	 * 
-	 * @param code
-	 */
-	public void setCode(String code) {
-		this.code = code;
-	}
+	private String m_roomCode;
+	private EmergencyMode m_emergencyMode;
+        
+        public Room(){
+            m_roomCode = "New Room";
+            m_emergencyMode = EmergencyMode.Normal;
+        }
 
-	public EmergencyMode getEmergencyMode() {
-		return this.emergencyMode;
-	}
+    public String GetCode() {
+        return m_roomCode;
+    }
 
-	/**
-	 * 
-	 * @param emergencyMode
-	 */
-	public void setEmergencyMode(EmergencyMode emergencyMode) {
-		this.emergencyMode = emergencyMode;
-	}
+    public void SetCode(String code) {
+        this.m_roomCode = code;
+    }
 
+    public EmergencyMode GetEmergencyMode() {
+        return m_emergencyMode;
+    }
+
+    public void SetEmergencyMode(EmergencyMode emergencyMode) {
+        this.m_emergencyMode = emergencyMode;
+    }        
 }

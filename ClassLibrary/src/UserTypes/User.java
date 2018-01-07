@@ -1,22 +1,29 @@
-public class User {
+package UserTypes;
 
-	public int id;
-	public String name;
+public abstract class User {
 
-	public int getId() {
-		return this.id;
-	}
+	private int m_id;
+	private String m_name;
+        
+        public User(){
+            m_id = 0;
+            m_name = "New User";
+        }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int GetId() {
+        return m_id;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public void SetId(int m_id) {
+        this.m_id = m_id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String GetName() {
+        return m_name;
+    }
 
+    public void SetName(String m_name) {
+        this.m_name = m_name;
+    }      
+        
 }
