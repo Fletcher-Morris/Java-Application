@@ -6,6 +6,7 @@
 package accesssystem;
 
 import gui.SystemUi;
+import Util.*;
 
 /**
  *
@@ -20,5 +21,7 @@ public class AccessSystem {
         // TODO code application logic here
         
         SystemUi.main(args);
+        
+        
     }
 }

@@ -1,6 +1,10 @@
+package UserTypes;
 
-import UserTypes.User;
+import UserTypes.*;
 
 public class Visitor extends User {
-    
+
+    public Visitor() {
+        this.SetUserType(UserType.Visitor);
+    }    
 }
