@@ -26,5 +26,5 @@ public abstract class Room {
 
     public void SetEmergencyMode(EmergencyMode emergencyMode) {
         this.m_emergencyMode = emergencyMode;
-    }        
+    }
 }

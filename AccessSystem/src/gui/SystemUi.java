@@ -5,9 +5,13 @@
  */
 package gui;
 
-import UserTypes.User;
+import UserTypes.*;
+import RoomTypes.*;
 import Util.UniAccessSystem;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.*; 
+import java.awt.*; 
+import java.awt.event.*;
+import javax.swing.table.*;
 
 /**
  *
@@ -22,11 +26,7 @@ public class SystemUi extends javax.swing.JFrame {
         initComponents();
     }
     
-    private static UniAccessSystem m_uniSystem;
-
-    public static void SetUniSystem(UniAccessSystem uniSystem) {
-        m_uniSystem = uniSystem;
-    }    
+    private static UniAccessSystem system;
 
     /**
      * This method is called from within the constructor to initialise the form.
@@ -197,9 +197,14 @@ public class SystemUi extends javax.swing.JFrame {
         CreateUserLastNameTextField.setMinimumSize(new java.awt.Dimension(120, 6));
         CreateUserLastNameTextField.setPreferredSize(new java.awt.Dimension(100, 25));
 
-        CreateUserTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CreateUserTypeComboBox.setModel(new DefaultComboBoxModel(UserType.values()));
         CreateUserTypeComboBox.setMinimumSize(new java.awt.Dimension(120, 6));
         CreateUserTypeComboBox.setPreferredSize(new java.awt.Dimension(100, 25));
+        CreateUserTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateUserTypeComboBoxActionPerformed(evt);
+            }
+        });
 
         CreateUserBtn.setText("Create User");
         CreateUserBtn.setMinimumSize(new java.awt.Dimension(120, 6));
@@ -228,6 +233,11 @@ public class SystemUi extends javax.swing.JFrame {
         ModifyUserTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         ModifyUserTypeComboBox.setMinimumSize(new java.awt.Dimension(120, 6));
         ModifyUserTypeComboBox.setPreferredSize(new java.awt.Dimension(100, 25));
+        ModifyUserTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifyUserTypeComboBoxActionPerformed(evt);
+            }
+        });
 
         ModifyUserBtn.setText("Modify User");
         ModifyUserBtn.setMinimumSize(new java.awt.Dimension(120, 6));
@@ -499,7 +509,14 @@ public class SystemUi extends javax.swing.JFrame {
     }//GEN-LAST:event_ViewCurrentLogBtnActionPerformed
 
     private void CreateUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUserBtnActionPerformed
-        // TODO add your handling code here:
+        
+        User newUser = new User() {};
+        newUser.SetName(CreateUserFirstNameTextField.getText() + " " + CreateUserLastNameTextField.getText());
+        newUser.SetUserType((UserType)CreateUserTypeComboBox.getSelectedItem());
+        
+        system.userList.CreateUser(newUser);
+        
+        RefreshUserTable();
     }//GEN-LAST:event_CreateUserBtnActionPerformed
 
     private void SaveLogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveLogBtnActionPerformed
@@ -517,6 +534,14 @@ public class SystemUi extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ModifyUserTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyUserTypeComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ModifyUserTypeComboBoxActionPerformed
+
+    private void CreateUserTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUserTypeComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CreateUserTypeComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -548,34 +573,55 @@ public class SystemUi extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SystemUi().setVisible(true);
-            }
-        });
-        
-        m_uniSystem.userList.CreateUser("Jeff");
-        m_uniSystem.userList.CreateUser("Ron");
-        m_uniSystem.userList.CreateUser("Jane");
-        m_uniSystem.userList.CreateUser("Rosetta");
-        m_uniSystem.userList.CreateUser("Keith");
+            new SystemUi().setVisible(true);
+
+            system = new UniAccessSystem();
+
+            system.userList.CreateUser("Jeff");
+            system.userList.CreateUser("Ron");
+            system.userList.CreateUser("Jane");
+            system.userList.CreateUser("Rosetta");
+            system.userList.CreateUser("Keith");
         
         RefreshUserTable();
+            }
+        });
+    }
+    
+    public static void RefreshRoomTable(){
+        
+        DefaultTableModel model = (DefaultTableModel) RoomsTable.getModel();
+        
+        
+        
+        for(int i = 0; i < system.userList.GetUsers().size(); i++){
+            
+            User user = system.userList.GetUsers().get(i);
+            int idFieldData = user.GetId();
+            String nameFieldData = user.GetName();
+            String typeFieldData = user.GetUserType().toString();
+            model.addRow(new Object[]{idFieldData, nameFieldData, typeFieldData});
+        }
+        
+        RoomsTable.setModel(model);
     }
     
     public static void RefreshUserTable(){
         
-        for(int i = 0; i < m_uniSystem.userList.GetUsers().size(); i++){
+        DefaultTableModel model = (DefaultTableModel) UsersTable.getModel();
+        
+        model.setRowCount(0);
+        
+        for(int i = 0; i < system.userList.GetUsers().size(); i++){
             
-            User user = m_uniSystem.userList.GetUsers().get(i);
+            User user = system.userList.GetUsers().get(i);
             int idFieldData = user.GetId();
             String nameFieldData = user.GetName();
             String typeFieldData = user.GetUserType().toString();
-            
-            String ColNames[] = {"Id", "Name", "User Role"};            
-            DefaultTableModel usersTableModel = new DefaultTableModel(null, ColNames);
-            usersTableModel.addRow(new Object[]{idFieldData, nameFieldData, typeFieldData});
-            
-            UsersTable.setModel(usersTableModel);
+            model.addRow(new Object[]{idFieldData, nameFieldData, typeFieldData});
         }
+        
+        UsersTable.setModel(model);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -583,7 +629,7 @@ public class SystemUi extends javax.swing.JFrame {
     private javax.swing.JButton CreateUserBtn2;
     private javax.swing.JTextField CreateUserFirstNameTextField;
     private javax.swing.JTextField CreateUserLastNameTextField;
-    private javax.swing.JComboBox<String> CreateUserTypeComboBox;
+    private javax.swing.JComboBox<UserType> CreateUserTypeComboBox;
     private javax.swing.JMenuItem ExitBtn;
     private javax.swing.JMenu FileBtn;
     private javax.swing.JButton LoadLogBtn;
@@ -604,8 +650,8 @@ public class SystemUi extends javax.swing.JFrame {
     private javax.swing.JPanel RoomsButtonsPanel;
     private javax.swing.JScrollPane RoomsButtonsScrollPane;
     private javax.swing.JScrollPane RoomsScrollPane;
-    private javax.swing.JSplitPane RoomsTab;
-    private javax.swing.JTable RoomsTable;
+    private static javax.swing.JSplitPane RoomsTab;
+    private static javax.swing.JTable RoomsTable;
     private javax.swing.JButton SaveLogBtn;
     private javax.swing.JPanel SimulationTab;
     private javax.swing.JPanel UsersButtonsPanel;

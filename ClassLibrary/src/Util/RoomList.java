@@ -5,6 +5,10 @@
  */
 package Util;
 
+import RoomTypes.*;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author odmoa
@@ -12,6 +16,22 @@ package Util;
 public class RoomList {
 
     public RoomList() {
+        m_rooms = new ArrayList<Room>();
+    }
+    
+    
+    private List<Room> m_rooms;
+
+    public List<Room> GetUsers() {
+        return m_rooms;
+    }
+
+    public void SetRooms(ArrayList m_users) {
+        this.m_rooms = m_users;
+    }
+    
+    public void CreateRoom(Room room){
         
+        m_rooms.add(room);
     }
 }

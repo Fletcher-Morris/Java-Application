@@ -33,10 +33,17 @@ public class UserList{
     }
     
     public void CreateUser(User user){
+        for(int i = 0; i < m_users.size(); i ++){
+            user.SetId(i + 1);
+        }
         m_users.add(user);
     }
     public void CreateUser(String name){
         User newUser = new User(name) {};
+        CreateUser(newUser);
+    }
+    public void CreateUser(String name, UserType type){
+        User newUser = new User(name, type) {};
         CreateUser(newUser);
     }
     
