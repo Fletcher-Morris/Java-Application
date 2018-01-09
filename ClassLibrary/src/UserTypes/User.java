@@ -11,6 +11,11 @@ public abstract class User {
             m_name = "New User";
             m_userType = UserType.Visitor;
         }
+        public User(String name){
+            m_id = 0;
+            m_name = name;
+            m_userType = UserType.Visitor;
+        }
 
     public int GetId() {
         return m_id;

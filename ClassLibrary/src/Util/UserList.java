@@ -16,12 +16,13 @@ import UserTypes.*;
  * @author odmoa
  */
 public class UserList{
-    
+
+    public UserList() {
+        m_users = new ArrayList<User>();
+    }
     
     
     private List<User> m_users;
-    
-    private List<User> m_sortedUsers;
 
     public List<User> GetUsers() {
         return m_users;
@@ -30,28 +31,32 @@ public class UserList{
     public void SetUsers(ArrayList m_users) {
         this.m_users = m_users;
     }
-
-    public List<User> GetSortedUsers() {
-        return m_sortedUsers;
+    
+    public void CreateUser(User user){
+        m_users.add(user);
     }
-
-    public void SetSortedUsers(ArrayList m_sortedUsers) {
-        this.m_sortedUsers = m_sortedUsers;
+    public void CreateUser(String name){
+        User newUser = new User(name) {};
+        CreateUser(newUser);
     }
     
-    
-    public List<User> SortAlphabetically(){
-        
-        m_sortedUsers = m_users;
+    public User FindUserById(int id){
         
         for(int i = 0; i < m_users.size(); i++){
-            
-        }
-        
-        return m_sortedUsers;
+            if(m_users.get(i).GetId() == id){
+                return m_users.get(i);
+            }
+        }        
+        return null;
     }
     
-    public void AddUser(User user){
-        m_users.add(user);
+    public User FindUserByName(String fullName){
+        
+        for(int i = 0; i < m_users.size(); i++){
+            if(m_users.get(i).GetName() == fullName){
+                return m_users.get(i);
+            }
+        }        
+        return null;
     }
 }

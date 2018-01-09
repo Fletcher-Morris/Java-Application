@@ -14,14 +14,16 @@ import Util.*;
  */
 public class AccessSystem {
 
+    public static UniAccessSystem system;
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
         
+        system = new UniAccessSystem();
+        SystemUi.SetUniSystem(system);
         SystemUi.main(args);
-        
-        
     }
 }
