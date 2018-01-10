@@ -172,9 +172,16 @@ public class SystemUi extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         UsersTable.setToolTipText("");
@@ -230,7 +237,7 @@ public class SystemUi extends javax.swing.JFrame {
         ModifyUserLastNameTextField.setMinimumSize(new java.awt.Dimension(120, 6));
         ModifyUserLastNameTextField.setPreferredSize(new java.awt.Dimension(100, 25));
 
-        ModifyUserTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ModifyUserTypeComboBox.setModel(new DefaultComboBoxModel(UserType.values()));
         ModifyUserTypeComboBox.setMinimumSize(new java.awt.Dimension(120, 6));
         ModifyUserTypeComboBox.setPreferredSize(new java.awt.Dimension(100, 25));
         ModifyUserTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -242,6 +249,11 @@ public class SystemUi extends javax.swing.JFrame {
         ModifyUserBtn.setText("Modify User");
         ModifyUserBtn.setMinimumSize(new java.awt.Dimension(120, 6));
         ModifyUserBtn.setPreferredSize(new java.awt.Dimension(100, 25));
+        ModifyUserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifyUserBtnActionPerformed(evt);
+            }
+        });
 
         jSeparator4.setMinimumSize(new java.awt.Dimension(120, 6));
         jSeparator4.setPreferredSize(new java.awt.Dimension(100, 25));
@@ -543,6 +555,23 @@ public class SystemUi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CreateUserTypeComboBoxActionPerformed
 
+    private void ModifyUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyUserBtnActionPerformed
+
+        int modId = Integer.parseInt(ModifyUserIdTextField.getText());
+        User modUser = system.userList.FindUserById(modId);
+        if(modUser != null){
+            
+            String modName = ModifyUserFirstNameTextField.getText() + " " + ModifyUserLastNameTextField.getText();
+            UserType modType = (UserType)ModifyUserTypeComboBox.getSelectedItem();
+            
+            modUser.SetName(modName);
+            modUser.SetUserType(modType);
+            
+            system.userList.SetUser(modId, modUser);
+            RefreshUserTable();
+        }
+    }//GEN-LAST:event_ModifyUserBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -583,7 +612,7 @@ public class SystemUi extends javax.swing.JFrame {
             system.userList.CreateUser("Rosetta");
             system.userList.CreateUser("Keith");
         
-        RefreshUserTable();
+            RefreshUserTable();
             }
         });
     }

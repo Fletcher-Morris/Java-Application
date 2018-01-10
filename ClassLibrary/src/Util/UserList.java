@@ -36,15 +36,15 @@ public class UserList{
         for(int i = 0; i < m_users.size(); i ++){
             user.SetId(i + 1);
         }
-        m_users.add(user);
+        m_users.add(user.ToUser());
     }
     public void CreateUser(String name){
         User newUser = new User(name) {};
-        CreateUser(newUser);
+        CreateUser(newUser.ToUser());
     }
     public void CreateUser(String name, UserType type){
         User newUser = new User(name, type) {};
-        CreateUser(newUser);
+        CreateUser(newUser.ToUser());
     }
     
     public User FindUserById(int id){
@@ -65,5 +65,13 @@ public class UserList{
             }
         }        
         return null;
+    }
+    
+    public void SetUser(int id, User user){
+        for(int i = 0; i < m_users.size(); i++){
+            if(i == id){              
+                m_users.set(i, user.ToUser());
+            }
+        }
     }
 }

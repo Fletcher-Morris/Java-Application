@@ -45,4 +45,52 @@ public abstract class User {
     public void SetUserType(UserType userType){
         this.m_userType = userType;
     }
+    
+    public static User ToUser(User user){
+        
+        User newUser = user;
+        switch(newUser.GetUserType()){
+                case ContractCleaner:
+                    newUser = new ContractCleaner();
+                    break;
+                    
+                    case EmergencyResponder:
+                    newUser = new EmergencyResponder();
+                    break;
+                    
+                    case Manager:
+                    newUser = new Manager();
+                    break;
+                    
+                    case Security:
+                    newUser = new Security();
+                    break;
+                    
+                    case Staff:
+                    newUser = new Staff();
+                    break;
+                    
+                    case Student:
+                    newUser = new Student();
+                    break;
+                    
+                    case Visitor:
+                    newUser = new Visitor();
+                    break;
+                    
+                    default:
+                    newUser = new Visitor();
+                    break;
+            }
+        
+        newUser.SetId(user.GetId());
+        newUser.SetName(user.GetName());
+        newUser.SetUserType(user.GetUserType());
+        
+        return newUser;
+    }
+
+    public User ToUser(){
+        return ToUser(this);
+    }
 }
