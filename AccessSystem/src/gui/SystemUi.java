@@ -186,6 +186,11 @@ public class SystemUi extends javax.swing.JFrame {
         });
         UsersTable.setToolTipText("");
         UsersTable.setAutoscrolls(false);
+        UsersTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                UsersTableMouseClicked(evt);
+            }
+        });
         UsersScrollPane.setViewportView(UsersTable);
 
         UsersTab.setTopComponent(UsersScrollPane);
@@ -595,6 +600,24 @@ public class SystemUi extends javax.swing.JFrame {
             ShowIssue("Cannot find user!");
         }
     }//GEN-LAST:event_ModifyUserBtn1ActionPerformed
+
+    private void UsersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsersTableMouseClicked
+        
+        int row = UsersTable.getSelectedRow();
+        String userId = UsersTable.getModel().getValueAt(row, 0).toString();
+        String userWholeName = UsersTable.getModel().getValueAt(row, 1).toString();
+        String[] userSplitName = userWholeName.split("\\s+");
+        ModifyUserIdTextField.setText(userId);
+        ModifyUserFirstNameTextField.setText(userSplitName[0]);
+        if(userSplitName.length > 1){
+            ModifyUserLastNameTextField.setText(userSplitName[1]);
+        }
+        else{
+            ModifyUserLastNameTextField.setText("");
+        }
+        
+        RemoveUserIdTextField.setText(userId);
+    }//GEN-LAST:event_UsersTableMouseClicked
 
     private void ShowMessage(String message){
         JFrame frame = new JFrame("Message");
