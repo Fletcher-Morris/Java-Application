@@ -74,4 +74,12 @@ public class UserList{
             }
         }
     }
+    
+    public void RemoveUser(int id){
+        for(int i = 0; i < m_users.size(); i++){
+            if(i == id){              
+                m_users.remove(i);
+            }
+        }
+    }
 }

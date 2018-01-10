@@ -265,6 +265,11 @@ public class SystemUi extends javax.swing.JFrame {
         ModifyUserBtn1.setText("Remove User");
         ModifyUserBtn1.setMinimumSize(new java.awt.Dimension(120, 6));
         ModifyUserBtn1.setPreferredSize(new java.awt.Dimension(100, 25));
+        ModifyUserBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModifyUserBtn1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout UsersButtonsPanelLayout = new javax.swing.GroupLayout(UsersButtonsPanel);
         UsersButtonsPanel.setLayout(UsersButtonsPanelLayout);
@@ -570,8 +575,37 @@ public class SystemUi extends javax.swing.JFrame {
             system.userList.SetUser(modId, modUser);
             RefreshUserTable();
         }
+        else{
+            ShowIssue("Cannot find user!");
+        }
     }//GEN-LAST:event_ModifyUserBtnActionPerformed
 
+    private void ModifyUserBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyUserBtn1ActionPerformed
+    
+        int removeId = Integer.parseInt(RemoveUserIdTextField.getText());
+        User removeUser = system.userList.FindUserById(removeId);
+        if(removeUser != null){
+            
+            ShowMessage("User " + removeUser.GetId() + " (" + removeUser.GetName() + ", " + removeUser.GetUserType() + "),\nhas been removed.");
+            
+            system.userList.RemoveUser(removeId);            
+            RefreshUserTable();
+        }
+        else{
+            ShowIssue("Cannot find user!");
+        }
+    }//GEN-LAST:event_ModifyUserBtn1ActionPerformed
+
+    private void ShowMessage(String message){
+        JFrame frame = new JFrame("Message");
+            JOptionPane.showMessageDialog(frame, message);
+    }
+    
+    private void ShowIssue(String issue){
+        JFrame frame = new JFrame("Issue");
+            JOptionPane.showMessageDialog(frame, issue);
+    }
+    
     /**
      * @param args the command line arguments
      */
