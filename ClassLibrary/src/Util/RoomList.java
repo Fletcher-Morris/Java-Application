@@ -30,13 +30,17 @@ public class RoomList {
         this.m_rooms = m_users;
     }
     
+    public void CreateRoom(Room newRoom){
+        m_rooms.add(newRoom.ToRoom());
+        
+        System.out.println("Created room " + newRoom.GetCode() + " (" + newRoom + ")");
+    }
+    
     public void CreateRoom(String roomCode, RoomType roomType){
         
         Room newRoom = new Room(roomCode, roomType) {};
         newRoom = newRoom.ToRoom();
-        m_rooms.add(newRoom);
-        
-        System.out.println("Created room " + newRoom.GetCode() + " (" + newRoom + ")");
+        CreateRoom(newRoom);
     }
     
     public Room FindRoom(String roomCode){
@@ -47,6 +51,10 @@ public class RoomList {
             }
         }        
         return null;
+    }
+    
+    public boolean RoomExists(String roomCode){
+        return FindRoom(roomCode) != null;
     }
     
     public void SetRoom(String roomCode, Room room){

@@ -72,6 +72,13 @@ public class UserList{
         return null;
     }
     
+    public boolean UserExists(int id){
+        return FindUserById(id) != null;
+    }
+    public boolean UserExists(String name){
+        return FindUserByName(name) != null;
+    }
+    
     public void SetUser(int id, User user){
         for(int i = 0; i < m_users.size(); i++){
             if(i == id){              

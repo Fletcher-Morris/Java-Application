@@ -215,7 +215,7 @@ public class SystemUi extends javax.swing.JFrame {
         });
 
         CampusToEmergencyBtn.setBackground(new java.awt.Color(255, 51, 51));
-        CampusToEmergencyBtn.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        CampusToEmergencyBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         CampusToEmergencyBtn.setForeground(new java.awt.Color(255, 255, 255));
         CampusToEmergencyBtn.setText("Campus EMERGENCY");
         CampusToEmergencyBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -280,7 +280,7 @@ public class SystemUi extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(RoomsButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RoomsButtonsPanelLayout.createSequentialGroup()
-                    .addContainerGap(175, Short.MAX_VALUE)
+                    .addContainerGap(177, Short.MAX_VALUE)
                     .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(243, 243, 243)))
         );
@@ -576,7 +576,7 @@ public class SystemUi extends javax.swing.JFrame {
                 .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(406, Short.MAX_VALUE))
+                .addContainerGap(451, Short.MAX_VALUE))
         );
 
         MainTabs.addTab("Simulation", SimulationTab);
@@ -601,10 +601,8 @@ public class SystemUi extends javax.swing.JFrame {
         
         User newUser = new User() {};
         newUser.SetName(CreateUserFirstNameTextField.getText() + " " + CreateUserLastNameTextField.getText());
-        newUser.SetUserType((UserType)CreateUserTypeComboBox.getSelectedItem());
-        
-        system.userList.CreateUser(newUser);
-        
+        newUser.SetUserType((UserType)CreateUserTypeComboBox.getSelectedItem());        
+        system.userList.CreateUser(newUser);        
         RefreshUserTable();
     }//GEN-LAST:event_CreateUserBtnActionPerformed
 
@@ -687,11 +685,32 @@ public class SystemUi extends javax.swing.JFrame {
     }//GEN-LAST:event_CreateRoomTypeComboBoxActionPerformed
 
     private void CreateRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateRoomBtnActionPerformed
-        // TODO add your handling code here:
+        String roomCode = CreateRoomCodeTextField.getText();
+        if(!system.roomList.RoomExists(roomCode)){
+            Room newRoom = new Room() {};
+        newRoom.SetCode(roomCode);
+        newRoom.SetRoomType((RoomType)CreateRoomTypeComboBox.getSelectedItem());        
+        system.roomList.CreateRoom(newRoom);        
+        RefreshRoomTable();
+        }
+        else{
+            ShowIssue(roomCode + " already exists!");
+        }
     }//GEN-LAST:event_CreateRoomBtnActionPerformed
 
     private void RemoveRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveRoomBtnActionPerformed
-        // TODO add your handling code here:
+        String removeCode = RemoveRoomCodeTextField.getText();
+        Room removeRoom = system.roomList.FindRoom(removeCode);
+        if(removeRoom != null){
+            
+            ShowMessage(removeRoom.GetRoomType() + " " + removeRoom.GetCode() + "\nhas been removed.");
+            
+            system.roomList.RemoveRoom(removeCode);
+            RefreshUserTable();
+        }
+        else{
+            ShowIssue("Cannot find room!");
+        }
     }//GEN-LAST:event_RemoveRoomBtnActionPerformed
 
     private void SetToEmergencyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetToEmergencyBtnActionPerformed
@@ -704,7 +723,7 @@ public class SystemUi extends javax.swing.JFrame {
             System.out.println("Set room " + room.GetCode() + " to " + room.GetEmergencyMode());
         }
         else{
-            ShowIssue("Cannot find room " + roomCode + "!");
+            ShowIssue("Cannot find room '" + roomCode + "'!");
         }
     }//GEN-LAST:event_SetToEmergencyBtnActionPerformed
 
@@ -719,7 +738,7 @@ public class SystemUi extends javax.swing.JFrame {
             System.out.println("Set room " + room.GetCode() + " to " + room.GetEmergencyMode());
         }
         else{
-            ShowIssue("Cannot find room " + roomCode + "!");
+            ShowIssue("Cannot find room '" + roomCode + "'!");
         }
     }//GEN-LAST:event_SetToNormalBtnActionPerformed
 
