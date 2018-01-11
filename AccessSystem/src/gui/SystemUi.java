@@ -54,6 +54,9 @@ public class SystemUi extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         RemoveRoomCodeTextField = new javax.swing.JTextField();
         RemoveRoomBtn = new javax.swing.JButton();
+        jSeparator7 = new javax.swing.JSeparator();
+        CampusToNormalBtn = new javax.swing.JButton();
+        CampusToEmergencyBtn = new javax.swing.JButton();
         UsersTab = new javax.swing.JSplitPane();
         UsersScrollPane = new javax.swing.JScrollPane();
         UsersTable = new javax.swing.JTable();
@@ -74,7 +77,7 @@ public class SystemUi extends javax.swing.JFrame {
         RemoveUserBtn = new javax.swing.JButton();
         LogsTab = new javax.swing.JSplitPane();
         LogsScrollPane = new javax.swing.JScrollPane();
-        LogTextArea = new javax.swing.JTextArea();
+        logTextPane = new javax.swing.JTextPane();
         LogsButtonsScrollPane = new javax.swing.JScrollPane();
         LogsButtonsPanel = new javax.swing.JPanel();
         SaveLogBtn = new javax.swing.JButton();
@@ -200,6 +203,27 @@ public class SystemUi extends javax.swing.JFrame {
             }
         });
 
+        jSeparator7.setMinimumSize(new java.awt.Dimension(120, 6));
+        jSeparator7.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        CampusToNormalBtn.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        CampusToNormalBtn.setText("Set Campus To Normal");
+        CampusToNormalBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampusToNormalBtnActionPerformed(evt);
+            }
+        });
+
+        CampusToEmergencyBtn.setBackground(new java.awt.Color(255, 51, 51));
+        CampusToEmergencyBtn.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        CampusToEmergencyBtn.setForeground(new java.awt.Color(255, 255, 255));
+        CampusToEmergencyBtn.setText("Campus EMERGENCY");
+        CampusToEmergencyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampusToEmergencyBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout RoomsButtonsPanelLayout = new javax.swing.GroupLayout(RoomsButtonsPanel);
         RoomsButtonsPanel.setLayout(RoomsButtonsPanelLayout);
         RoomsButtonsPanelLayout.setHorizontalGroup(
@@ -216,8 +240,15 @@ public class SystemUi extends javax.swing.JFrame {
                     .addComponent(RemoveRoomBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SetToEmergencyBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SetToNormalBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(SetEmergencyModeRoomCodeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(SetEmergencyModeRoomCodeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CampusToEmergencyBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CampusToNormalBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(RoomsButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(RoomsButtonsPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         RoomsButtonsPanelLayout.setVerticalGroup(
             RoomsButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,13 +267,22 @@ public class SystemUi extends javax.swing.JFrame {
                 .addComponent(CreateRoomTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CreateRoomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(49, 49, 49)
                 .addComponent(RemoveRoomCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RemoveRoomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CampusToNormalBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CampusToEmergencyBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(RoomsButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RoomsButtonsPanelLayout.createSequentialGroup()
+                    .addContainerGap(175, Short.MAX_VALUE)
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(243, 243, 243)))
         );
 
         RoomsButtonsScrollPane.setViewportView(RoomsButtonsPanel);
@@ -443,9 +483,8 @@ public class SystemUi extends javax.swing.JFrame {
         LogsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         LogsScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        LogTextArea.setColumns(20);
-        LogTextArea.setRows(5);
-        LogsScrollPane.setViewportView(LogTextArea);
+        logTextPane.setEditable(false);
+        LogsScrollPane.setViewportView(logTextPane);
 
         LogsTab.setTopComponent(LogsScrollPane);
 
@@ -537,7 +576,7 @@ public class SystemUi extends javax.swing.JFrame {
                 .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(448, Short.MAX_VALUE))
+                .addContainerGap(406, Short.MAX_VALUE))
         );
 
         MainTabs.addTab("Simulation", SimulationTab);
@@ -550,7 +589,7 @@ public class SystemUi extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(MainTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
         );
 
         MainTabs.getAccessibleContext().setAccessibleName("Users");
@@ -659,8 +698,7 @@ public class SystemUi extends javax.swing.JFrame {
         String roomCode = SetEmergencyModeRoomCodeTextField.getText();
         Room room = system.roomList.FindRoom(roomCode);
         if(room != null){
-            room.SetEmergencyMode();
-            system.roomList.SetRoom(room.GetCode(), room);            
+            room.SetEmergencyMode();        
             RefreshRoomTable();
             
             System.out.println("Set room " + room.GetCode() + " to " + room.GetEmergencyMode());
@@ -675,8 +713,7 @@ public class SystemUi extends javax.swing.JFrame {
         String roomCode = SetEmergencyModeRoomCodeTextField.getText();
         Room room = system.roomList.FindRoom(roomCode);
         if(room != null){
-            room.SetEmergencyMode(EmergencyMode.Normal);            
-            system.roomList.SetRoom(room.GetCode(), room);            
+            system.roomList.FindRoom(roomCode).SetEmergencyMode(EmergencyMode.Normal);
             RefreshRoomTable();
             
             System.out.println("Set room " + room.GetCode() + " to " + room.GetEmergencyMode());
@@ -695,6 +732,22 @@ public class SystemUi extends javax.swing.JFrame {
         CreateRoomCodeTextField.setText(roomCode);
         RemoveRoomCodeTextField.setText(roomCode);
     }//GEN-LAST:event_RoomsTableMouseClicked
+
+    private void CampusToEmergencyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusToEmergencyBtnActionPerformed
+        for(int i = 0; i < system.roomList.GetRooms().size(); i++){
+            system.roomList.GetRooms().get(i).SetEmergencyMode();
+        }
+        
+        RefreshRoomTable();
+    }//GEN-LAST:event_CampusToEmergencyBtnActionPerformed
+
+    private void CampusToNormalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusToNormalBtnActionPerformed
+        for(int i = 0; i < system.roomList.GetRooms().size(); i++){
+            system.roomList.GetRooms().get(i).SetEmergencyMode(EmergencyMode.Normal);
+        }
+        
+        RefreshRoomTable();
+    }//GEN-LAST:event_CampusToNormalBtnActionPerformed
 
     private void ShowMessage(String message){
         JFrame frame = new JFrame("Message");
@@ -794,6 +847,8 @@ public class SystemUi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CampusToEmergencyBtn;
+    private javax.swing.JButton CampusToNormalBtn;
     private javax.swing.JButton CreateRoomBtn;
     private javax.swing.JTextField CreateRoomCodeTextField;
     private javax.swing.JComboBox<String> CreateRoomTypeComboBox;
@@ -802,7 +857,6 @@ public class SystemUi extends javax.swing.JFrame {
     private javax.swing.JTextField CreateUserLastNameTextField;
     private javax.swing.JComboBox<UserType> CreateUserTypeComboBox;
     private javax.swing.JButton LoadLogBtn;
-    private javax.swing.JTextArea LogTextArea;
     private javax.swing.JPanel LogsButtonsPanel;
     private javax.swing.JScrollPane LogsButtonsScrollPane;
     private javax.swing.JScrollPane LogsScrollPane;
@@ -838,7 +892,9 @@ public class SystemUi extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextPane logTextPane;
     // End of variables declaration//GEN-END:variables
 }
