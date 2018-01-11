@@ -22,7 +22,7 @@ public class RoomList {
     
     private List<Room> m_rooms;
 
-    public List<Room> GetUsers() {
+    public List<Room> GetRooms() {
         return m_rooms;
     }
 
@@ -30,8 +30,28 @@ public class RoomList {
         this.m_rooms = m_users;
     }
     
-    public void CreateRoom(Room room){
+    public void CreateRoom(String roomCode, RoomType roomType){
         
-        m_rooms.add(room);
+        Room newRoom = new Room(roomCode, roomType) {};
+        m_rooms.add(newRoom.ToRoom());
+    }
+    
+    public Room FindRoom(String roomCode){
+        
+        for(int i = 0; i < m_rooms.size(); i++){
+            if(m_rooms.get(i).GetCode() == roomCode){
+                return m_rooms.get(i);
+            }
+        }        
+        return null;
+    }
+    
+    public void RemoveRoom(String roomCode){
+        
+        for(int i = 0; i < m_rooms.size(); i++){
+            if(m_rooms.get(i).GetCode() == roomCode){
+                m_rooms.remove(i);
+            }
+        }
     }
 }
