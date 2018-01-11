@@ -19,11 +19,5 @@ public class UniAccessSystem {
         userList = new UserList();
         roomList = new RoomList();
         log = new Log();
-        
-//        userList.CreateRoom("Jeff");
-//        userList.CreateRoom("Ron");
-//        userList.CreateRoom("Jane");
-//        userList.CreateRoom("Rosetta");
-//        userList.CreateRoom("Keith");
     }
 }

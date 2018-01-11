@@ -33,23 +33,36 @@ public class RoomList {
     public void CreateRoom(String roomCode, RoomType roomType){
         
         Room newRoom = new Room(roomCode, roomType) {};
-        m_rooms.add(newRoom.ToRoom());
+        newRoom = newRoom.ToRoom();
+        m_rooms.add(newRoom);
+        
+        System.out.println("Created room " + newRoom.GetCode() + " (" + newRoom + ")");
     }
     
     public Room FindRoom(String roomCode){
         
         for(int i = 0; i < m_rooms.size(); i++){
-            if(m_rooms.get(i).GetCode() == roomCode){
+            if(m_rooms.get(i).GetCode().equals(roomCode)){
                 return m_rooms.get(i);
             }
         }        
         return null;
     }
     
+    public void SetRoom(String roomCode, Room room){
+        for(int i = 0; i < m_rooms.size(); i++){
+            if(m_rooms.get(i).GetCode().equals(roomCode)){              
+                m_rooms.set(i, room.ToRoom());
+            }
+        }
+    }
+    
     public void RemoveRoom(String roomCode){
         
         for(int i = 0; i < m_rooms.size(); i++){
             if(m_rooms.get(i).GetCode() == roomCode){
+                
+                System.out.println("Removed room " + m_rooms.get(i).GetCode() + " (" + m_rooms.get(i) + ")");
                 m_rooms.remove(i);
             }
         }

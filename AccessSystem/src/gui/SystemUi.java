@@ -7,6 +7,7 @@ package gui;
 
 import UserTypes.*;
 import RoomTypes.*;
+import Util.EmergencyMode;
 import Util.UniAccessSystem;
 import javax.swing.*; 
 import java.awt.*; 
@@ -83,14 +84,6 @@ public class SystemUi extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
-        MenuBAr = new javax.swing.JMenuBar();
-        FileBtn = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        ExitBtn = new javax.swing.JMenuItem();
-        ViewBtn = new javax.swing.JMenu();
-        ViewCurrentLogBtn = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -544,54 +537,10 @@ public class SystemUi extends javax.swing.JFrame {
                 .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(427, Short.MAX_VALUE))
+                .addContainerGap(448, Short.MAX_VALUE))
         );
 
         MainTabs.addTab("Simulation", SimulationTab);
-
-        FileBtn.setText("File");
-        FileBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        FileBtn.setName("FileBtn"); // NOI18N
-        FileBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FileBtnActionPerformed(evt);
-            }
-        });
-
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setLabel("Save");
-        FileBtn.add(jMenuItem1);
-
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setLabel("Open");
-        FileBtn.add(jMenuItem2);
-        FileBtn.add(jSeparator1);
-
-        ExitBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        ExitBtn.setText("Exit");
-        ExitBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExitBtnActionPerformed(evt);
-            }
-        });
-        FileBtn.add(ExitBtn);
-
-        MenuBAr.add(FileBtn);
-
-        ViewBtn.setText("View");
-
-        ViewCurrentLogBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
-        ViewCurrentLogBtn.setText("Current Log");
-        ViewCurrentLogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewCurrentLogBtnActionPerformed(evt);
-            }
-        });
-        ViewBtn.add(ViewCurrentLogBtn);
-
-        MenuBAr.add(ViewBtn);
-
-        setJMenuBar(MenuBAr);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -601,27 +550,13 @@ public class SystemUi extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+            .addComponent(MainTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
         MainTabs.getAccessibleContext().setAccessibleName("Users");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void FileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FileBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FileBtnActionPerformed
-
-    private void ExitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitBtnActionPerformed
-        // TODO add your handling code here:
-        
-        System.exit(0);
-    }//GEN-LAST:event_ExitBtnActionPerformed
-
-    private void ViewCurrentLogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewCurrentLogBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ViewCurrentLogBtnActionPerformed
 
     private void CreateUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateUserBtnActionPerformed
         
@@ -721,19 +656,33 @@ public class SystemUi extends javax.swing.JFrame {
     }//GEN-LAST:event_RemoveRoomBtnActionPerformed
 
     private void SetToEmergencyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetToEmergencyBtnActionPerformed
-        // TODO add your handling code here:
+        String roomCode = SetEmergencyModeRoomCodeTextField.getText();
+        Room room = system.roomList.FindRoom(roomCode);
+        if(room != null){
+            room.SetEmergencyMode();
+            system.roomList.SetRoom(room.GetCode(), room);            
+            RefreshRoomTable();
+            
+            System.out.println("Set room " + room.GetCode() + " to " + room.GetEmergencyMode());
+        }
+        else{
+            ShowIssue("Cannot find room " + roomCode + "!");
+        }
     }//GEN-LAST:event_SetToEmergencyBtnActionPerformed
 
     private void SetToNormalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetToNormalBtnActionPerformed
         
-        String roomCode = RemoveUserIdTextField.getText();
+        String roomCode = SetEmergencyModeRoomCodeTextField.getText();
         Room room = system.roomList.FindRoom(roomCode);
-        if(room != null){            
-            system.userList.SetToNormal(roomCode);            
-            RefreshUserTable();
+        if(room != null){
+            room.SetEmergencyMode(EmergencyMode.Normal);            
+            system.roomList.SetRoom(room.GetCode(), room);            
+            RefreshRoomTable();
+            
+            System.out.println("Set room " + room.GetCode() + " to " + room.GetEmergencyMode());
         }
         else{
-            ShowIssue("Cannot find user!");
+            ShowIssue("Cannot find room " + roomCode + "!");
         }
     }//GEN-LAST:event_SetToNormalBtnActionPerformed
 
@@ -810,7 +759,8 @@ public class SystemUi extends javax.swing.JFrame {
     
     public static void RefreshRoomTable(){
         
-        DefaultTableModel model = (DefaultTableModel) RoomsTable.getModel();      
+        DefaultTableModel model = (DefaultTableModel) RoomsTable.getModel();
+        model.setRowCount(0);
         
         for(int i = 0; i < system.roomList.GetRooms().size(); i++){
             
@@ -818,6 +768,8 @@ public class SystemUi extends javax.swing.JFrame {
             String codeFieldData = room.GetCode();
             String typeFieldData = room.GetRoomType().toString();
             String modeFieldData = room.GetEmergencyMode().toString();
+            
+            System.out.println(room.GetEmergencyMode());
             model.addRow(new Object[]{codeFieldData, typeFieldData, modeFieldData});
         }
         
@@ -826,8 +778,7 @@ public class SystemUi extends javax.swing.JFrame {
     
     public static void RefreshUserTable(){
         
-        DefaultTableModel model = (DefaultTableModel) UsersTable.getModel();
-        
+        DefaultTableModel model = (DefaultTableModel) UsersTable.getModel();        
         model.setRowCount(0);
         
         for(int i = 0; i < system.userList.GetUsers().size(); i++){
@@ -850,8 +801,6 @@ public class SystemUi extends javax.swing.JFrame {
     private javax.swing.JTextField CreateUserFirstNameTextField;
     private javax.swing.JTextField CreateUserLastNameTextField;
     private javax.swing.JComboBox<UserType> CreateUserTypeComboBox;
-    private javax.swing.JMenuItem ExitBtn;
-    private javax.swing.JMenu FileBtn;
     private javax.swing.JButton LoadLogBtn;
     private javax.swing.JTextArea LogTextArea;
     private javax.swing.JPanel LogsButtonsPanel;
@@ -859,7 +808,6 @@ public class SystemUi extends javax.swing.JFrame {
     private javax.swing.JScrollPane LogsScrollPane;
     private javax.swing.JSplitPane LogsTab;
     private javax.swing.JTabbedPane MainTabs;
-    private javax.swing.JMenuBar MenuBAr;
     private javax.swing.JButton ModifyUserBtn;
     private javax.swing.JTextField ModifyUserFirstNameTextField;
     private javax.swing.JTextField ModifyUserIdTextField;
@@ -884,13 +832,8 @@ public class SystemUi extends javax.swing.JFrame {
     private javax.swing.JScrollPane UsersScrollPane;
     private javax.swing.JSplitPane UsersTab;
     private static javax.swing.JTable UsersTable;
-    private javax.swing.JMenu ViewBtn;
-    private javax.swing.JMenuItem ViewCurrentLogBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
