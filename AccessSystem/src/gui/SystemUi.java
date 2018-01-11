@@ -86,6 +86,7 @@ public class SystemUi extends javax.swing.JFrame {
         LogsButtonsPanel = new javax.swing.JPanel();
         SaveLogBtn = new javax.swing.JButton();
         LoadLogBtn = new javax.swing.JButton();
+        RefreshLogBtn = new javax.swing.JButton();
         SimulationTab = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
@@ -284,7 +285,7 @@ public class SystemUi extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(RoomsButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RoomsButtonsPanelLayout.createSequentialGroup()
-                    .addContainerGap(177, Short.MAX_VALUE)
+                    .addContainerGap(303, Short.MAX_VALUE)
                     .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(243, 243, 243)))
         );
@@ -516,6 +517,15 @@ public class SystemUi extends javax.swing.JFrame {
             }
         });
 
+        RefreshLogBtn.setText("REFRSH LOG");
+        RefreshLogBtn.setMinimumSize(new java.awt.Dimension(120, 6));
+        RefreshLogBtn.setPreferredSize(new java.awt.Dimension(100, 25));
+        RefreshLogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshLogBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout LogsButtonsPanelLayout = new javax.swing.GroupLayout(LogsButtonsPanel);
         LogsButtonsPanel.setLayout(LogsButtonsPanelLayout);
         LogsButtonsPanelLayout.setHorizontalGroup(
@@ -524,7 +534,8 @@ public class SystemUi extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(LogsButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SaveLogBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addComponent(LoadLogBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                    .addComponent(LoadLogBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                    .addComponent(RefreshLogBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
                 .addContainerGap())
         );
         LogsButtonsPanelLayout.setVerticalGroup(
@@ -534,7 +545,9 @@ public class SystemUi extends javax.swing.JFrame {
                 .addComponent(SaveLogBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LoadLogBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(504, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(RefreshLogBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(461, Short.MAX_VALUE))
         );
 
         LogsButtonsScrollPane.setViewportView(LogsButtonsPanel);
@@ -611,7 +624,11 @@ public class SystemUi extends javax.swing.JFrame {
     }//GEN-LAST:event_CreateUserBtnActionPerformed
 
     private void SaveLogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveLogBtnActionPerformed
-        // TODO add your handling code here:
+        try {
+            Log.GetInstance().Save();
+        } catch (IOException ex) {
+            Logger.getLogger(SystemUi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_SaveLogBtnActionPerformed
 
     private void LoadLogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadLogBtnActionPerformed
@@ -721,7 +738,7 @@ public class SystemUi extends javax.swing.JFrame {
         String roomCode = SetEmergencyModeRoomCodeTextField.getText();
         Room room = system.roomList.FindRoom(roomCode);
         if(room != null){
-            room.SetEmergencyMode();        
+            room.SetEmergencyMode(EmergencyMode.Emergency);        
             RefreshRoomTable();
             
             System.out.println("Set room " + room.GetCode() + " to " + room.GetEmergencyMode());
@@ -736,7 +753,7 @@ public class SystemUi extends javax.swing.JFrame {
         String roomCode = SetEmergencyModeRoomCodeTextField.getText();
         Room room = system.roomList.FindRoom(roomCode);
         if(room != null){
-            system.roomList.FindRoom(roomCode).SetEmergencyMode(EmergencyMode.Normal);
+            room.SetEmergencyMode(EmergencyMode.Normal);
             RefreshRoomTable();
             
             System.out.println("Set room " + room.GetCode() + " to " + room.GetEmergencyMode());
@@ -773,6 +790,11 @@ public class SystemUi extends javax.swing.JFrame {
         }
         RefreshRoomTable();
     }//GEN-LAST:event_CampusToNormalBtnActionPerformed
+
+    private void RefreshLogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshLogBtnActionPerformed
+        
+        logTextPane.setText(Log.GetInstance().GetLogString());
+    }//GEN-LAST:event_RefreshLogBtnActionPerformed
 
     private void ShowMessage(String message){
         JFrame frame = new JFrame("Message");
@@ -831,15 +853,6 @@ public class SystemUi extends javax.swing.JFrame {
         
             RefreshUserTable();
             RefreshRoomTable();
-            
-            if(system.userList.FindUserById(2).AttemptAccess(system.roomList.FindRoom("BBG202"))){
-                System.out.println("YEAAAAAAAHHHHHH!!!");
-                try {
-                    Log.GetInstance().Save();
-                } catch (IOException ex) {
-                    Logger.getLogger(SystemUi.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
             }
         });
     }
@@ -856,7 +869,6 @@ public class SystemUi extends javax.swing.JFrame {
             String typeFieldData = room.GetRoomType().toString();
             String modeFieldData = room.GetEmergencyMode().toString();
             
-            System.out.println(room.GetEmergencyMode());
             model.addRow(new Object[]{codeFieldData, typeFieldData, modeFieldData});
         }
         
@@ -901,6 +913,7 @@ public class SystemUi extends javax.swing.JFrame {
     private javax.swing.JTextField ModifyUserIdTextField;
     private javax.swing.JTextField ModifyUserLastNameTextField;
     private javax.swing.JComboBox<String> ModifyUserTypeComboBox;
+    private javax.swing.JButton RefreshLogBtn;
     private javax.swing.JButton RemoveRoomBtn;
     private javax.swing.JTextField RemoveRoomCodeTextField;
     private javax.swing.JButton RemoveUserBtn;

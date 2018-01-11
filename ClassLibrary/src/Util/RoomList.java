@@ -32,8 +32,7 @@ public class RoomList {
     
     public void CreateRoom(Room newRoom){
         m_rooms.add(newRoom.ToRoom());
-        
-        System.out.println("Created room " + newRoom.GetCode() + " (" + newRoom + ")");
+        Log.GetInstance().LogEvent("Created room " + newRoom.GetCode() + " (" + newRoom + ")");
     }
     
     public void CreateRoom(String roomCode, RoomType roomType){
@@ -69,8 +68,7 @@ public class RoomList {
         
         for(int i = 0; i < m_rooms.size(); i++){
             if(m_rooms.get(i).GetCode() == roomCode){
-                
-                System.out.println("Removed room " + m_rooms.get(i).GetCode() + " (" + m_rooms.get(i) + ")");
+                Log.GetInstance().LogEvent("Removed room " + m_rooms.get(i).GetCode() + " (" + m_rooms.get(i) + ")");
                 m_rooms.remove(i);
             }
         }

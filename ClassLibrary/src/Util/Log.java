@@ -10,6 +10,8 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 
@@ -34,20 +36,23 @@ public class Log{
         return LogSingletonContainer.LOGSINGLEINSTANCE;
     }
     
-    private List<String> m_loggedEvents;
     private String m_logString;
     
     private String m_filePath;
 
     public Log() {
-        m_loggedEvents = new ArrayList<String>();
-        m_logString = "UNIVERSITY ACCESS SYSTEM\n";
+        m_logString = "";
         m_filePath = "log.txt";
     }
+
+    public String GetLogString() {
+        return m_logString;
+    } 
     
     public void LogEvent(String eventText){
-//        m_loggedEvents.add(eventText);
-        m_logString += "\n" + eventText;
+        String eventString = "[" + GetTimeStamp() + "] " + eventText + System.lineSeparator(); 
+        m_logString += eventString;
+        System.out.println(eventString);
     }
     
     public void LogAccessAttempt(User user, Room room, boolean success){
@@ -66,16 +71,31 @@ public class Log{
     public void LogEmergencyMode() throws IOException{
         LogEvent("CAMPUS ENTERED EMERGENCY MODE.");
         
-        Save("log.txt");
+        Save("EM_" + GetTimeStamp() + ".txt");
+    }
+    public void LogEmergencyMode(Room room) throws IOException{
+        if(room.GetEmergencyMode() == EmergencyMode.Emergency){
+            LogEvent("ROOM " + room.GetCode() + " ENTERED EMERGENCY MODE.");        
+            Save("EM_" + GetTimeStamp() + ".txt");
+        }
+        else{
+            LogEvent("ROOM " + room.GetCode() + " LEFT EMERGENCY MODE."); 
+        }
     }
     
     public void Save(String path) throws IOException{        
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(path), "utf-8"))) {
                 writer.write(m_logString);
+                writer.newLine();
 }
     }
     public void Save() throws IOException{
         Save(m_filePath);
+    }
+    
+    private String GetTimeStamp(){
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        return timeStamp;
     }
 }

@@ -2,6 +2,10 @@ package RoomTypes;
 
 import UserTypes.User;
 import Util.EmergencyMode;
+import Util.Log;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public abstract class Room {
 
@@ -43,14 +47,14 @@ public abstract class Room {
 
     public void SetEmergencyMode(EmergencyMode emergencyMode) {
         this.m_emergencyMode = emergencyMode;
-    }
-    
-    public void SetEmergencyMode() {
-        this.m_emergencyMode = EmergencyMode.Emergency;
-    }
-    
-    public void SetNormalMode() {
-        this.m_emergencyMode = EmergencyMode.Normal;
+        
+        if(emergencyMode == EmergencyMode.Emergency){
+            try {
+                Log.GetInstance().LogEmergencyMode(this);
+            } catch (IOException ex) {
+                Logger.getLogger(Room.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public static Room ToRoom(Room room){

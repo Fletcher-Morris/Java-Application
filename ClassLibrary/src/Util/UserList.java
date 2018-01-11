@@ -40,8 +40,7 @@ public class UserList{
         
         user = user.ToUser();
         m_users.add(user);
-        
-        System.out.println("Created user " + user.GetName() + " (" + user + ")");
+        Log.GetInstance().LogEvent("Created user " + user.GetName() + " (" + user + ")");
     }
     public void CreateUser(String name){
         User newUser = new User(name) {};
@@ -90,7 +89,7 @@ public class UserList{
     public void RemoveUser(int id){
         for(int i = 0; i < m_users.size(); i++){
             if(i == id){
-                System.out.println("Removed user " + m_users.get(i).GetName() + " (" + m_users.get(i) + ")");
+                Log.GetInstance().LogEvent("Removed user " + m_users.get(i).GetName() + " (" + m_users.get(i) + ")");
                 m_users.remove(i);
             }
         }
