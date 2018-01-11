@@ -1,11 +1,12 @@
 package RoomTypes;
 
+import UserTypes.User;
 import Util.EmergencyMode;
 
 public abstract class Room {
 
 	private String m_roomCode;
-        private RoomType m_roomType;
+        RoomType m_roomType;
 	private EmergencyMode m_emergencyMode;
         
         public Room(){

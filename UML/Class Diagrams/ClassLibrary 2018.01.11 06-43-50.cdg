@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="ClassLibrary">
+  <ClassDiagramComponents>
+    <Class name="Singleton" package="Patterns" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="GetInstance" returnType="Singleton" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="LectureHall" package="RoomTypes" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="ResearchLab" package="RoomTypes" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Room" package="RoomTypes" visibility="public" isAbstract="true" xPosition="704.0" yPosition="263.0">
+      <Fields>
+        <Field name="m_roomCode" type="String" visibility="private"/>
+        <Field name="m_roomType" type="RoomType" visibility="package"/>
+        <Field name="m_emergencyMode" type="EmergencyMode" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="roomCode"/>
+          <Argument type="RoomType" name="roomType"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="GetCode" returnType="String" visibility="public"/>
+        <Method name="SetCode" returnType="void" visibility="public">
+          <Argument type="String" name="code"/>
+        </Method>
+        <Method name="GetRoomType" returnType="RoomType" visibility="public"/>
+        <Method name="SetRoomType" returnType="void" visibility="public">
+          <Argument type="RoomType" name="roomType"/>
+        </Method>
+        <Method name="GetEmergencyMode" returnType="EmergencyMode" visibility="public"/>
+        <Method name="SetEmergencyMode" returnType="void" visibility="public">
+          <Argument type="EmergencyMode" name="emergencyMode"/>
+        </Method>
+        <Method name="SetEmergencyMode" returnType="void" visibility="public"/>
+        <Method name="SetNormalMode" returnType="void" visibility="public"/>
+        <Method name="ToRoom" returnType="Room" visibility="public" isStatic="true">
+          <Argument type="Room" name="room"/>
+        </Method>
+        <Method name="ToRoom" returnType="Room" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="SecureRoom" package="RoomTypes" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="StaffRoom" package="RoomTypes" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="StudentLab" package="RoomTypes" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="ContractCleaner" package="UserTypes" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="EmergencyResponder" package="UserTypes" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Manager" package="UserTypes" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Security" package="UserTypes" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Staff" package="UserTypes" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="AttemptAccess" returnType="boolean" visibility="public">
+          <Argument type="Room" name="room"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Student" package="UserTypes" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="User" package="UserTypes" visibility="public" isAbstract="true" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="m_id" type="int" visibility="private"/>
+        <Field name="m_name" type="String" visibility="private"/>
+        <Field name="m_userType" type="UserType" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="UserType" name="type"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="GetId" returnType="int" visibility="public"/>
+        <Method name="SetId" returnType="void" visibility="public">
+          <Argument type="int" name="m_id"/>
+        </Method>
+        <Method name="GetName" returnType="String" visibility="public"/>
+        <Method name="SetName" returnType="void" visibility="public">
+          <Argument type="String" name="m_name"/>
+        </Method>
+        <Method name="GetUserType" returnType="UserType" visibility="public"/>
+        <Method name="SetUserType" returnType="void" visibility="public">
+          <Argument type="UserType" name="userType"/>
+        </Method>
+        <Method name="ToUser" returnType="User" visibility="public" isStatic="true">
+          <Argument type="User" name="user"/>
+        </Method>
+        <Method name="ToUser" returnType="User" visibility="public"/>
+        <Method name="AttemptAccess" returnType="boolean" visibility="public">
+          <Argument type="Room" name="room"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Visitor" package="UserTypes" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="AttemptAccess" returnType="boolean" visibility="public">
+          <Argument type="Room" name="room"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Log" package="Util" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="m_loggedEvents" type="List&lt;String&gt;" visibility="private"/>
+        <Field name="m_logString" type="String" visibility="private"/>
+        <Field name="m_filePath" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="GetInstance" returnType="Log" visibility="public" isStatic="true"/>
+        <Method name="LogEvent" returnType="void" visibility="public">
+          <Argument type="String" name="eventText"/>
+        </Method>
+        <Method name="LogAccessAttempt" returnType="void" visibility="public">
+          <Argument type="User" name="user"/>
+          <Argument type="Room" name="room"/>
+          <Argument type="boolean" name="success"/>
+        </Method>
+        <Method name="LogEmergencyMode" returnType="void" visibility="public"/>
+        <Method name="Save" returnType="void" visibility="public">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="Save" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="RoomList" package="Util" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Fields>
+        <Field name="m_rooms" type="List&lt;Room&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="GetRooms" returnType="List&lt;Room&gt;" visibility="public"/>
+        <Method name="SetRooms" returnType="void" visibility="public">
+          <Argument type="ArrayList" name="m_users"/>
+        </Method>
+        <Method name="CreateRoom" returnType="void" visibility="public">
+          <Argument type="Room" name="newRoom"/>
+        </Method>
+        <Method name="CreateRoom" returnType="void" visibility="public">
+          <Argument type="String" name="roomCode"/>
+          <Argument type="RoomType" name="roomType"/>
+        </Method>
+        <Method name="FindRoom" returnType="Room" visibility="public">
+          <Argument type="String" name="roomCode"/>
+        </Method>
+        <Method name="RoomExists" returnType="boolean" visibility="public">
+          <Argument type="String" name="roomCode"/>
+        </Method>
+        <Method name="SetRoom" returnType="void" visibility="public">
+          <Argument type="String" name="roomCode"/>
+          <Argument type="Room" name="room"/>
+        </Method>
+        <Method name="RemoveRoom" returnType="void" visibility="public">
+          <Argument type="String" name="roomCode"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UniAccessSystem" package="Util" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields>
+        <Field name="userList" type="UserList" visibility="public"/>
+        <Field name="roomList" type="RoomList" visibility="public"/>
+        <Field name="log" type="Log" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="SetCampusMode" returnType="void" visibility="public">
+          <Argument type="EmergencyMode" name="mode"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UserList" package="Util" visibility="public" xPosition="1520.0" yPosition="820.0">
+      <Fields>
+        <Field name="m_users" type="List&lt;User&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="GetUsers" returnType="List&lt;User&gt;" visibility="public"/>
+        <Method name="SetUsers" returnType="void" visibility="public">
+          <Argument type="ArrayList" name="m_users"/>
+        </Method>
+        <Method name="CreateUser" returnType="void" visibility="public">
+          <Argument type="User" name="user"/>
+        </Method>
+        <Method name="CreateUser" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="CreateUser" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="UserType" name="type"/>
+        </Method>
+        <Method name="FindUserById" returnType="User" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="FindUserByName" returnType="User" visibility="public">
+          <Argument type="String" name="fullName"/>
+        </Method>
+        <Method name="UserExists" returnType="boolean" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="UserExists" returnType="boolean" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="SetUser" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="User" name="user"/>
+        </Method>
+        <Method name="RemoveUser" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Enum name="RoomType" package="RoomTypes" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Literals>
+        <Literal name="LectureHall"/>
+        <Literal name="ResearchLab"/>
+        <Literal name="SecureRoom"/>
+        <Literal name="StaffRoom"/>
+        <Literal name="StudentLab"/>
+      </Literals>
+    </Enum>
+    <Enum name="UserType" package="UserTypes" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Literals>
+        <Literal name="Student"/>
+        <Literal name="Visitor"/>
+        <Literal name="Staff"/>
+        <Literal name="Security"/>
+        <Literal name="Manager"/>
+        <Literal name="EmergencyResponder"/>
+        <Literal name="ContractCleaner"/>
+      </Literals>
+    </Enum>
+    <Enum name="EmergencyMode" package="Util" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Literals>
+        <Literal name="Normal"/>
+        <Literal name="Emergency"/>
+      </Literals>
+    </Enum>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="UserTypes.Student" target="UserTypes.User"/>
+    <HasRelation name="m_userType" source="UserTypes.User" target="UserTypes.UserType" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="UserTypes.ContractCleaner" target="UserTypes.User"/>
+    <IsRelation name="is" source="RoomTypes.ResearchLab" target="RoomTypes.Room"/>
+    <IsRelation name="is" source="UserTypes.Manager" target="UserTypes.User"/>
+    <UseRelation source="UserTypes.User" target="UserTypes.User" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="RoomTypes.StaffRoom" target="RoomTypes.Room"/>
+    <UseRelation source="UserTypes.User" target="UserTypes.UserType" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Util.UserList" target="UserTypes.UserType" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="userList" source="Util.UniAccessSystem" target="Util.UserList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="UserList"/>
+    <UseRelation source="Util.UserList" target="UserTypes.User" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="UserTypes.Staff" target="RoomTypes.Room" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="UserTypes.Security" target="UserTypes.User"/>
+    <IsRelation name="is" source="RoomTypes.StudentLab" target="RoomTypes.Room"/>
+    <HasRelation name="log" source="Util.UniAccessSystem" target="Util.Log" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="RoomTypes.LectureHall" target="RoomTypes.Room"/>
+    <IsRelation name="is" source="UserTypes.Staff" target="UserTypes.User"/>
+    <IsRelation name="is" source="UserTypes.EmergencyResponder" target="UserTypes.User"/>
+    <UseRelation source="RoomTypes.Room" target="RoomTypes.Room" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="RoomTypes.Room" target="RoomTypes.RoomType" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="RoomTypes.SecureRoom" target="RoomTypes.Room"/>
+    <IsRelation name="is" source="UserTypes.Visitor" target="UserTypes.User"/>
+    <UseRelation source="Util.RoomList" target="RoomTypes.RoomType" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="m_roomType" source="RoomTypes.Room" target="RoomTypes.RoomType" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Util.UniAccessSystem" target="Util.EmergencyMode" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Util.Log" target="UserTypes.User" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="m_emergencyMode" source="RoomTypes.Room" target="Util.EmergencyMode" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Util.RoomList" target="RoomTypes.Room" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="m_rooms" source="Util.RoomList" target="RoomTypes.Room" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Room&gt;"/>
+    <UseRelation source="UserTypes.Visitor" target="RoomTypes.Room" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Patterns.Singleton" target="Patterns.Singleton" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="RoomTypes.Room" target="Util.EmergencyMode" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="m_users" source="Util.UserList" target="UserTypes.User" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;User&gt;"/>
+    <HasRelation name="roomList" source="Util.UniAccessSystem" target="Util.RoomList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="RoomList"/>
+    <UseRelation source="Util.Log" target="Util.Log" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="UserTypes.User" target="RoomTypes.Room" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

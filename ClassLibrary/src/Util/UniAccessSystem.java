@@ -5,6 +5,8 @@
  */
 package Util;
 
+import java.io.IOException;
+
 /**
  *
  * @author odmoa
@@ -19,5 +21,15 @@ public class UniAccessSystem {
         userList = new UserList();
         roomList = new RoomList();
         log = new Log();
+    }
+    
+    public void SetCampusMode(EmergencyMode mode) throws IOException{
+        for(int i = 0; i < roomList.GetRooms().size(); i++){
+            roomList.GetRooms().get(i).SetEmergencyMode(mode);
+        }
+        
+        if(mode == EmergencyMode.Emergency){
+            log.LogEmergencyMode();
+        }
     }
 }

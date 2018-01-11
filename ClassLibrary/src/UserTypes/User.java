@@ -1,5 +1,8 @@
 package UserTypes;
 
+import RoomTypes.*;
+import Util.Log;
+
 public abstract class User {
 
 	private int m_id;
@@ -92,5 +95,14 @@ public abstract class User {
 
     public User ToUser(){
         return ToUser(this);
+    }
+    
+    
+    public boolean AttemptAccess(Room room){
+        
+        boolean pass = false;
+        
+        Log.GetInstance().LogAccessAttempt(this, room, pass);        
+        return pass;
     }
 }

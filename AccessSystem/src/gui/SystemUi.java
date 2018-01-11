@@ -8,10 +8,14 @@ package gui;
 import UserTypes.*;
 import RoomTypes.*;
 import Util.EmergencyMode;
+import Util.Log;
 import Util.UniAccessSystem;
 import javax.swing.*; 
 import java.awt.*; 
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.*;
 
 /**
@@ -753,18 +757,20 @@ public class SystemUi extends javax.swing.JFrame {
     }//GEN-LAST:event_RoomsTableMouseClicked
 
     private void CampusToEmergencyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusToEmergencyBtnActionPerformed
-        for(int i = 0; i < system.roomList.GetRooms().size(); i++){
-            system.roomList.GetRooms().get(i).SetEmergencyMode();
+        try {        
+            system.SetCampusMode(EmergencyMode.Emergency);
+        } catch (IOException ex) {
+            Logger.getLogger(SystemUi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         RefreshRoomTable();
     }//GEN-LAST:event_CampusToEmergencyBtnActionPerformed
 
     private void CampusToNormalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusToNormalBtnActionPerformed
-        for(int i = 0; i < system.roomList.GetRooms().size(); i++){
-            system.roomList.GetRooms().get(i).SetEmergencyMode(EmergencyMode.Normal);
+        try {        
+            system.SetCampusMode(EmergencyMode.Normal);
+        } catch (IOException ex) {
+            Logger.getLogger(SystemUi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         RefreshRoomTable();
     }//GEN-LAST:event_CampusToNormalBtnActionPerformed
 
@@ -819,12 +825,21 @@ public class SystemUi extends javax.swing.JFrame {
             system.userList.CreateUser("Keith");
             
             system.roomList.CreateRoom("BBG201", RoomType.StudentLab);
-            system.roomList.CreateRoom("BBG202", RoomType.StudentLab);
+            system.roomList.CreateRoom("BBG202", RoomType.LectureHall);
             system.roomList.CreateRoom("BBG203", RoomType.ResearchLab);
             system.roomList.CreateRoom("BBG204", RoomType.StaffRoom);
         
             RefreshUserTable();
             RefreshRoomTable();
+            
+            if(system.userList.FindUserById(2).AttemptAccess(system.roomList.FindRoom("BBG202"))){
+                System.out.println("YEAAAAAAAHHHHHH!!!");
+                try {
+                    Log.GetInstance().Save();
+                } catch (IOException ex) {
+                    Logger.getLogger(SystemUi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             }
         });
     }
