@@ -85,17 +85,21 @@ public class SystemUi extends javax.swing.JFrame {
         LogsButtonsScrollPane = new javax.swing.JScrollPane();
         LogsButtonsPanel = new javax.swing.JPanel();
         SaveLogBtn = new javax.swing.JButton();
-        LoadLogBtn = new javax.swing.JButton();
         RefreshLogBtn = new javax.swing.JButton();
         SimulationTab = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
+        simulationUserIdTextField = new javax.swing.JTextField();
+        simulationRoomCodeTextField = new javax.swing.JTextField();
+        simulateBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
         setSize(new java.awt.Dimension(800, 600));
+
+        MainTabs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MainTabsMouseClicked(evt);
+            }
+        });
 
         RoomsTab.setResizeWeight(1.0);
 
@@ -285,7 +289,7 @@ public class SystemUi extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(RoomsButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RoomsButtonsPanelLayout.createSequentialGroup()
-                    .addContainerGap(303, Short.MAX_VALUE)
+                    .addContainerGap(177, Short.MAX_VALUE)
                     .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(243, 243, 243)))
         );
@@ -508,15 +512,6 @@ public class SystemUi extends javax.swing.JFrame {
             }
         });
 
-        LoadLogBtn.setText("Load Log");
-        LoadLogBtn.setMinimumSize(new java.awt.Dimension(120, 6));
-        LoadLogBtn.setPreferredSize(new java.awt.Dimension(100, 25));
-        LoadLogBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoadLogBtnActionPerformed(evt);
-            }
-        });
-
         RefreshLogBtn.setText("REFRSH LOG");
         RefreshLogBtn.setMinimumSize(new java.awt.Dimension(120, 6));
         RefreshLogBtn.setPreferredSize(new java.awt.Dimension(100, 25));
@@ -534,8 +529,7 @@ public class SystemUi extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(LogsButtonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SaveLogBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addComponent(LoadLogBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addComponent(RefreshLogBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                    .addComponent(RefreshLogBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
                 .addContainerGap())
         );
         LogsButtonsPanelLayout.setVerticalGroup(
@@ -544,10 +538,8 @@ public class SystemUi extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(SaveLogBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LoadLogBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(RefreshLogBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(461, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         LogsButtonsScrollPane.setViewportView(LogsButtonsPanel);
@@ -556,16 +548,14 @@ public class SystemUi extends javax.swing.JFrame {
 
         MainTabs.addTab("Logs", LogsTab);
 
-        jTextField1.setText("User Id");
+        simulationUserIdTextField.setText("User Id");
 
-        jTextField2.setText("Room Code");
+        simulationRoomCodeTextField.setText("Room Code");
 
-        jFormattedTextField1.setText("jFormattedTextField1");
-
-        jButton1.setText("SIMULATE!");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        simulateBtn.setText("SIMULATE!");
+        simulateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                simulateBtnActionPerformed(evt);
             }
         });
 
@@ -576,24 +566,21 @@ public class SystemUi extends javax.swing.JFrame {
             .addGroup(SimulationTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(SimulationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(simulationRoomCodeTextField)
+                    .addComponent(simulationUserIdTextField)
+                    .addComponent(simulateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
                 .addContainerGap(628, Short.MAX_VALUE))
         );
         SimulationTabLayout.setVerticalGroup(
             SimulationTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SimulationTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(simulationUserIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(simulationRoomCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(451, Short.MAX_VALUE))
+                .addComponent(simulateBtn)
+                .addContainerGap(477, Short.MAX_VALUE))
         );
 
         MainTabs.addTab("Simulation", SimulationTab);
@@ -631,13 +618,26 @@ public class SystemUi extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SaveLogBtnActionPerformed
 
-    private void LoadLogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadLogBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LoadLogBtnActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void simulateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simulateBtnActionPerformed
+        
+        if(system.userList.UserExists(Integer.parseInt(simulationUserIdTextField.getText()))){          
+            if(system.roomList.RoomExists(simulationRoomCodeTextField.getText())){
+                if(system.userList.FindUserById(Integer.parseInt(simulationUserIdTextField.getText()
+                )).AttemptAccess(system.roomList.FindRoom(simulationRoomCodeTextField.getText()))){
+                    ShowMessage("Access Granted!");
+                }
+                else{
+                    ShowIssue("Access Denied.");
+                }
+            }
+            else{
+                ShowIssue("Cannot find room!");
+            }
+        }
+        else{
+            ShowIssue("Cannot find user!");
+        }
+    }//GEN-LAST:event_simulateBtnActionPerformed
 
     private void ModifyUserTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyUserTypeComboBoxActionPerformed
         // TODO add your handling code here:
@@ -690,6 +690,7 @@ public class SystemUi extends javax.swing.JFrame {
         String userWholeName = UsersTable.getModel().getValueAt(row, 1).toString();
         String[] userSplitName = userWholeName.split("\\s+");
         ModifyUserIdTextField.setText(userId);
+        simulationUserIdTextField.setText(userId);
         ModifyUserFirstNameTextField.setText(userSplitName[0]);
         if(userSplitName.length > 1){
             ModifyUserLastNameTextField.setText(userSplitName[1]);
@@ -771,6 +772,7 @@ public class SystemUi extends javax.swing.JFrame {
         SetEmergencyModeRoomCodeTextField.setText(roomCode);
         CreateRoomCodeTextField.setText(roomCode);
         RemoveRoomCodeTextField.setText(roomCode);
+        simulationRoomCodeTextField.setText(roomCode);
     }//GEN-LAST:event_RoomsTableMouseClicked
 
     private void CampusToEmergencyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampusToEmergencyBtnActionPerformed
@@ -795,6 +797,10 @@ public class SystemUi extends javax.swing.JFrame {
         
         logTextPane.setText(Log.GetInstance().GetLogString());
     }//GEN-LAST:event_RefreshLogBtnActionPerformed
+
+    private void MainTabsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MainTabsMouseClicked
+        logTextPane.setText(Log.GetInstance().GetLogString());
+    }//GEN-LAST:event_MainTabsMouseClicked
 
     private void ShowMessage(String message){
         JFrame frame = new JFrame("Message");
@@ -846,10 +852,11 @@ public class SystemUi extends javax.swing.JFrame {
             system.userList.CreateUser("Rosetta");
             system.userList.CreateUser("Keith");
             
-            system.roomList.CreateRoom("BBG201", RoomType.StudentLab);
-            system.roomList.CreateRoom("BBG202", RoomType.LectureHall);
-            system.roomList.CreateRoom("BBG203", RoomType.ResearchLab);
-            system.roomList.CreateRoom("BBG204", RoomType.StaffRoom);
+            system.roomList.CreateRoom("BGB201", RoomType.StudentLab);
+            system.roomList.CreateRoom("BGB202", RoomType.LectureHall);
+            system.roomList.CreateRoom("BGB203", RoomType.ResearchLab);
+            system.roomList.CreateRoom("BGB204", RoomType.StaffRoom);
+            system.roomList.CreateRoom("BGB205", RoomType.SecureRoom);
         
             RefreshUserTable();
             RefreshRoomTable();
@@ -902,7 +909,6 @@ public class SystemUi extends javax.swing.JFrame {
     private javax.swing.JTextField CreateUserFirstNameTextField;
     private javax.swing.JTextField CreateUserLastNameTextField;
     private javax.swing.JComboBox<UserType> CreateUserTypeComboBox;
-    private javax.swing.JButton LoadLogBtn;
     private javax.swing.JPanel LogsButtonsPanel;
     private javax.swing.JScrollPane LogsButtonsScrollPane;
     private javax.swing.JScrollPane LogsScrollPane;
@@ -933,15 +939,14 @@ public class SystemUi extends javax.swing.JFrame {
     private javax.swing.JScrollPane UsersScrollPane;
     private javax.swing.JSplitPane UsersTab;
     private static javax.swing.JTable UsersTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextPane logTextPane;
+    private javax.swing.JButton simulateBtn;
+    private javax.swing.JTextField simulationRoomCodeTextField;
+    private javax.swing.JTextField simulationUserIdTextField;
     // End of variables declaration//GEN-END:variables
 }

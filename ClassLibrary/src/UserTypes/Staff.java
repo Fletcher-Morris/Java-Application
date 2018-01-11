@@ -34,7 +34,7 @@ public class Staff extends User {
             }
         }
         
-        Log.GetInstance().LogAccessAttempt(this, room, true);
+        Log.GetInstance().LogAccessAttempt(this, room, pass);
         return pass;
     }
 }

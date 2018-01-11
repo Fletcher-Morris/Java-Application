@@ -5,6 +5,7 @@ import RoomTypes.RoomType;
 import UserTypes.*;
 import Util.EmergencyMode;
 import Util.Log;
+import java.security.Timestamp;
 
 public class Visitor extends User {
 
@@ -20,7 +21,7 @@ public class Visitor extends User {
 
     @Override
     public boolean AttemptAccess(Room room) {
-        
+                
         boolean pass = false;
         if(room.GetEmergencyMode() == EmergencyMode.Normal){
             if(room.GetRoomType() == RoomType.LectureHall){
